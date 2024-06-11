@@ -1,0 +1,65 @@
+// iOS Code
+import UIKit
+
+class ProfileViewController: UIViewController {
+
+    private var profileJson: [String: Any] = [:]
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Load profile from JSON
+        loadProfileFromJson()
+
+        // Display profile on screen
+        displayProfile()
+    }
+
+    private func loadProfileFromJson() {
+        let jsonString = """
+            {
+                "name": "Dr. John Doe",
+                "email": "johndoe@example.com",
+                "phone": "1234567890",
+                "specialty": "Cardiología",
+                "doctor": "Dr. Jane Smith",
+                "image": "https://example.com/doctor_now_profile_image.jpg"
+            }
+        """.trimIndent()
+
+        if let data = jsonString.data(using: .utf8) {
+            do {
+                profileJson = try JSONSerialization.jsonObject(with: data) as? [String: Any] ?? [:]
+            } catch {
+                print("Error parsing JSON: \(error)")
+            }
+        }
+    }
+
+    private func displayProfile() {
+        let nameTextView = UITextView()
+        let emailTextView = UITextView()
+        let phoneTextView = UITextView()
+        let specialtyTextView = UITextView()
+        let doctorTextView = UITextView()
+        let imageView = UIImageView()
+
+        nameTextView.text = profileJson["name"] as? String
+        emailTextView.text = profileJson["email"] as? String
+        phoneTextView.text = profileJson["phone"] as? String
+        specialtyTextView.text = profileJson["specialty"] as? String
+        doctorTextView.text = profileJson["doctor"] as? String
+
+        // Load profile image
+        if let imageUrl = profileJson["image"] as? String {
+            if let url = URL(string: imageUrl) {
+                do {
+                    let data = try Data(contentsOf: url)
+                    imageView.image = UIImage(data: data)
+                } catch {
+                    print("Error loading image: \(error)")
+                }
+            }
+        }
+    }
+}

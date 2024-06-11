@@ -1,0 +1,57 @@
+// Android Code
+import android.os.Bundle
+import android.widget.TextView
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import org.json.JSONObject
+
+class ProfileActivity : AppCompatActivity() {
+
+    private lateinit var profileJson: JSONObject
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_profile)
+
+        // Load profile from JSON
+        loadProfileFromJson()
+
+        // Display profile on screen
+        displayProfile()
+    }
+
+    private fun loadProfileFromJson() {
+        val jsonString = """
+            {
+                "name": "Dr. John Doe",
+                "email": "johndoe@example.com",
+                "phone": "1234567890",
+                "specialty": "Cardiología",
+                "doctor": "Dr. Jane Smith",
+                "image": "https://example.com/doctor_now_profile_image.jpg"
+            }
+        """.trimIndent()
+
+        profileJson = JSONObject(jsonString)
+    }
+
+    private fun displayProfile() {
+        val nameTextView = findViewById<TextView>(R.id.name_textview)
+        val emailTextView = findViewById<TextView>(R.id.email_textview)
+        val phoneTextView = findViewById<TextView>(R.id.phone_textview)
+        val specialtyTextView = findViewById<TextView>(R.id.specialty_textview)
+        val doctorTextView = findViewById<TextView>(R.id.doctor_textview)
+        val imageView = findViewById<ImageView>(R.id.profile_imageview)
+
+        nameTextView.text = profileJson.getString("name")
+        emailTextView.text = profileJson.getString("email")
+        phoneTextView.text = profileJson.getString("phone")
+        specialtyTextView.text = profileJson.getString("specialty")
+        doctorTextView.text = profileJson.getString("doctor")
+
+        // Load profile image
+        val imageUrl = profileJson.getString("image")
+        Glide.with(this).load(imageUrl).into(imageView)
+    }
+}

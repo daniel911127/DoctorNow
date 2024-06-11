@@ -1,0 +1,50 @@
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, Picker, StyleSheet } from 'react-native';
+
+const UniversalMeetApp = () => {
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [specialty, setSpecialty] = useState('');
+  const [doctor, setDoctor] = useState('');
+  const [error, setError] = useState(null);
+
+  const handleSchedule = () => {
+    if (!date || !time || !specialty || !doctor) {
+      setError('Por favor, complete todos los campos');
+      return;
+    }
+
+    try {
+      // Lógica para agendar cita
+      console.log('Cita agendada con éxito');
+    } catch (error) {
+      setError('Error al agendar cita: ' + error.message);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>UniversalMeet</Text>
+      {/* Resto del código (inputs, pickers, etc.) */}
+      {/* ... */}
+      {error && <Text style={styles.error}>{error}</Text>}
+      <Button title="Agendar Cita" onPress={handleSchedule} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  // Resto de estilos
+  // ...
+});
+
+export default UniversalMeetApp;

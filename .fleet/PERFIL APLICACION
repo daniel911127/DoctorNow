@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Picker, StyleSheet } from 'react-native';
 
-const UniversalMeetApp = () => {
+const DocotornowApp = () => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [specialty, setSpecialty] = useState('');
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
   // ...
 });
 
-export default UniversalMeetApp;
+export default DoctornowApp;

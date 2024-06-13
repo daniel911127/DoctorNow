@@ -1,22 +1,26 @@
 import Agendar.BottomScreen
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.material.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,32 +28,14 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.core.annotation.ExperimentalVoyagerApi
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.navigator.currentOrThrow
-import cafe.adriel.voyager.transitions.FadeTransition
-import cafe.adriel.voyager.transitions.SlideTransition
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import cafe.adriel.voyager.navigator.tab.CurrentTab
+import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
+import cafe.adriel.voyager.navigator.tab.TabNavigator
 import androidx.compose.ui.platform.LocalContext
-import android.widget.Toast
-
-import doctornow.composeapp.generated.resources.Res
-import doctornow.composeapp.generated.resources.compose_multiplatform
-
-
-@Composable
-@Preview
-fun App() {
-    MaterialTheme {
-        Navigator(screen=MainScreen()){navigator ->
-            FadeTransition(navigator)
-        }
-    }
-}
-
-class MainScreen: Screen {
+import cafe.adriel.voyager.navigator.LocalNavigator
+class Registro: Screen  {
     @Composable
     override fun Content() {
         val context = LocalContext.current
@@ -71,10 +57,28 @@ class MainScreen: Screen {
                 modifier = Modifier.wrapContentSize(align = Alignment.Center)
             ) {
                 Text(
-                    "Inicio de Sesión",
+                    "Registrate",
                     fontSize = 24.sp,
                     color = Color.White,
                     modifier = Modifier.padding(bottom = 16.dp)
+                )
+                OutlinedTextField(
+                    value = username,
+                    onValueChange = { username = it },
+                    label = { Text("Nombre") },
+                    singleLine = true,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp)
+                )
+                OutlinedTextField(
+                    value = username,
+                    onValueChange = { username = it },
+                    label = { Text("Apellido") },
+                    singleLine = true,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp)
                 )
 
                 OutlinedTextField(
@@ -100,25 +104,15 @@ class MainScreen: Screen {
 
                 Button(
                     onClick = {
-                         navigator?.push(BottomScreen())
+                        navigator?.push(BottomScreen())
                     },
                     modifier = Modifier
                         .width(200.dp)
                 ) {
-                    Text("Iniciar Sesión")
+                    Text("Crear")
                 }
-                Button(
-                    onClick = {
-                        navigator?.push(Registro())
-                    },
-                    modifier = Modifier
-                        .width(200.dp)
-                ) {
-                    Text("Registrate")
-                }
+
             }
         }
     }
 }
-
-

@@ -32,11 +32,6 @@ import cafe.adriel.voyager.transitions.FadeTransition
 import cafe.adriel.voyager.transitions.SlideTransition
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.platform.LocalContext
-import android.widget.Toast
-
-import doctornow.composeapp.generated.resources.Res
-import doctornow.composeapp.generated.resources.compose_multiplatform
 
 
 @Composable
@@ -52,13 +47,12 @@ fun App() {
 class MainScreen: Screen {
     @Composable
     override fun Content() {
-        val context = LocalContext.current
 
         var username by remember { mutableStateOf(TextFieldValue()) }
         var password by remember { mutableStateOf(TextFieldValue()) }
 
         val navigator= LocalNavigator.current
-        var showContent by remember { mutableStateOf(false) }
+
         Box(
             Modifier
                 .fillMaxSize()

@@ -33,7 +33,7 @@ object MisCitas : Tab {
 
     @Composable
     override fun Content() {
-        Box(Modifier.fillMaxSize().background(Color.Yellow), contentAlignment = Alignment.Center){
+        Box(Modifier.fillMaxSize().background(Color(73,160,209)), contentAlignment = Alignment.Center){
             Text("MisCitasScreen", fontSize = 22.sp,color= Color.Blue)
         }
     }

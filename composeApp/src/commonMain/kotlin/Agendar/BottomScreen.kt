@@ -1,5 +1,6 @@
 package Agendar
 
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -7,6 +8,9 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.annotation.ExperimentalVoyagerApi
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.tab.CurrentTab
@@ -25,10 +29,11 @@ class BottomScreen :Screen{
         ){
             Scaffold(
                 topBar = {
-                    TopAppBar(title = { Text(it.current.options.title)})
+                    TopAppBar(title = { Text(it.current.options.title)},backgroundColor = Color(73,160,209),
+                    modifier = Modifier.height(80.dp))
                 },
                 bottomBar = {
-                    BottomNavigation{
+                    BottomNavigation(backgroundColor  = Color(73,160,209)){
                         val tabNavigator= LocalTabNavigator.current
                         BottomNavigationItem(
                             selected= tabNavigator.current.key==Home.key,

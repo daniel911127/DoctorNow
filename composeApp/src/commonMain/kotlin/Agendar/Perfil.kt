@@ -33,7 +33,7 @@ object Perfil : Tab {
 
         @Composable
         override fun Content() {
-            Box(Modifier.fillMaxSize().background(Color.Blue), contentAlignment = Alignment.Center){
+            Box(Modifier.fillMaxSize().background(Color(73,160,209)), contentAlignment = Alignment.Center){
                 Text("PerfilScreen", fontSize = 22.sp,color= Color.White)
             }
         }

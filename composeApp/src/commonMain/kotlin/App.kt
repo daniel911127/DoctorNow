@@ -47,33 +47,12 @@ class MainScreen: Screen {
         val navigator= LocalNavigator.current
         var showContent by remember { mutableStateOf(false) }
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = { navigator?.push(SecondScreen()) }) {
-                Text("Navegacion basica")
-            }
             Spacer(Modifier.height(18.dp))
             Button(onClick = { navigator?.push(BottomScreen()) }) {
-                Text("Navegacion basica")
+                Text("Login")
             }
         }
     }
 }
 
-class SecondScreen:Screen{
-    @Composable
-    override fun Content() {
-        val navigator= LocalNavigator.currentOrThrow
-        Column(
-            modifier=Modifier.fillMaxSize().background(Color(73,160,209)),
-            horizontalAlignment = Alignment.CenterHorizontally
-            ){
-            Text(
-                "Segunda Pantalla",
-                fontSize = 26.sp,
-                color = Color.White
-            )
-            Spacer(modifier=Modifier.height(16.dp))
-            Button(onClick = {navigator.pop()}){ Text("volver")}
-        }
-    }
 
-}

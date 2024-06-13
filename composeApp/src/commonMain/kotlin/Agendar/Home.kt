@@ -59,6 +59,7 @@ object Home :Tab{
             LazyColumn(modifier = Modifier.fillMaxSize().background(Color(73, 160, 209))) {
                 items(doctors) { doctor ->
                     DoctorCard(doctor = doctor)
+                    Spacer(Modifier.height(18.dp))
                 }
             }
         }

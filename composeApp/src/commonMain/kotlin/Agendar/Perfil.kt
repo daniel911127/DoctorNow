@@ -1,5 +1,6 @@
 package Agendar
 
+import MainScreen.Companion.KEY_EMAIL
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,8 +17,11 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import com.russhwolf.settings.Settings
 
 object Perfil : Tab {
+
+    private val settings: Settings = Settings()
         override val options: TabOptions
         @Composable
         get() {
@@ -33,8 +37,9 @@ object Perfil : Tab {
 
         @Composable
         override fun Content() {
+            val user = settings.getString(KEY_EMAIL,"")
             Box(Modifier.fillMaxSize().background(Color(73,160,209)), contentAlignment = Alignment.Center){
-                Text("PerfilScreen", fontSize = 22.sp,color= Color.White)
+                Text(user, fontSize = 22.sp,color= Color.White)
             }
         }
     }

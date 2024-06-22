@@ -30,6 +30,8 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import cafe.adriel.voyager.transitions.FadeTransition
 import cafe.adriel.voyager.transitions.SlideTransition
+import com.russhwolf.settings.Settings
+import com.russhwolf.settings.set
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -45,11 +47,20 @@ fun App() {
 }
 
 class MainScreen: Screen {
+
+    private val settings:Settings = Settings()
+
+    companion object{
+        const val KEY_EMAIL = "EMAIL"
+        const val KEY_PASS = "PASSWORD"
+    }
     @Composable
     override fun Content() {
 
         var username by remember { mutableStateOf(TextFieldValue()) }
         var password by remember { mutableStateOf(TextFieldValue()) }
+        var isValidEmail by remember { mutableStateOf(true) }
+
 
         val navigator= LocalNavigator.current
 
@@ -65,17 +76,21 @@ class MainScreen: Screen {
                 modifier = Modifier.wrapContentSize(align = Alignment.Center)
             ) {
                 Text(
-                    "Inicio de Sesión",
-                    fontSize = 24.sp,
-                    color = Color.White,
-                    modifier = Modifier.padding(bottom = 16.dp)
-                )
+                        "Inicio de Sesión",
+                        fontSize = 24.sp,
+                        color = Color.White,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
 
                 OutlinedTextField(
                     value = username,
-                    onValueChange = { username = it },
+                    onValueChange = {
+                        username = it
+                        isValidEmail = isValidEmail(it.text)
+                                    },
                     label = { Text("Correo") },
                     singleLine = true,
+                    isError = !isValidEmail && username.text.isNotEmpty(),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 8.dp)
@@ -94,8 +109,11 @@ class MainScreen: Screen {
 
                 Button(
                     onClick = {
+                        settings.putString(KEY_EMAIL, username.text)
+                        settings.putString(KEY_PASS, password.text)
                          navigator?.push(BottomScreen())
                     },
+                    enabled = username.text.isNotEmpty() && password.text.isNotEmpty(),
                     modifier = Modifier
                         .width(200.dp)
                 ) {
@@ -112,6 +130,11 @@ class MainScreen: Screen {
                 }
             }
         }
+    }
+
+    fun isValidEmail(email: String): Boolean {
+        val emailRegex = Regex("^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})")
+        return emailRegex.matches(email)
     }
 }
 

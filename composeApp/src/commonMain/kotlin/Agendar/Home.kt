@@ -55,7 +55,7 @@ object Home : Tab {
                 Doctor(
                     "Dr. Carlos", "Pediatra", mutableStateListOf(
                         Schedule("Lunes 9:00 AM", true),
-                        Schedule("Miércoles 3:00 PM", false)
+                        Schedule("Miércoles 3:00 PM", true)
                     )
                 ),
                 Doctor(
@@ -65,8 +65,26 @@ object Home : Tab {
                     )
                 ),
                 Doctor(
+                    "Dr. Miguel", "General", mutableStateListOf(
+                        Schedule("Lunes 2:00 PM", true),
+                        Schedule("Miércoles 5:00 PM", true)
+                    )
+                ),
+                Doctor(
+                    "Dr. Silvia", "Psicologa", mutableStateListOf(
+                        Schedule("Lunes 9:00 AM", true),
+                        Schedule("Miércoles 3:00 PM", true)
+                    )
+                ),
+                Doctor(
+                    "Dr. Rodolfo", "Dentista", mutableStateListOf(
+                        Schedule("Martes 10:00 AM", true),
+                        Schedule("Jueves 2:00 PM", true)
+                    )
+                ),
+                Doctor(
                     "Dr. Juan", "Cardiólogo", mutableStateListOf(
-                        Schedule("Lunes 2:00 PM", false),
+                        Schedule("Lunes 2:00 PM", true),
                         Schedule("Miércoles 5:00 PM", true)
                     )
                 )

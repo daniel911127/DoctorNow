@@ -27,7 +27,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
+import com.russhwolf.settings.Settings
+
 class Registro: Screen  {
+    private val settings: Settings = Settings()
+
+    companion object{
+        const val KEY_EMAIL = "EMAIL"
+        const val KEY_PASS = "PASSWORD"
+        const val KEY_NAME="NAME"
+        const val KEY_LASTNAME="APELLIDO"
+    }
     @Composable
     override fun Content() {
 
@@ -97,6 +107,10 @@ class Registro: Screen  {
 
                 Button(
                     onClick = {
+                        settings.putString(KEY_EMAIL, email.text)
+                        settings.putString(KEY_PASS, password.text)
+                        settings.putString(KEY_NAME, username.text)
+                        settings.putString(KEY_LASTNAME, lastname.text)
                         navigator?.push(BottomScreen())
                     },
                     modifier = Modifier

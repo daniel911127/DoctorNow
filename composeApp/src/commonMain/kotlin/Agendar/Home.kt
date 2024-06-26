@@ -33,8 +33,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import com.russhwolf.settings.Settings
+
 
 object Home : Tab {
+
     override val options: TabOptions
         @Composable
         get() {

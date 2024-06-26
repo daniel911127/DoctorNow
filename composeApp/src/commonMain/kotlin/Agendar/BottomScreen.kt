@@ -1,6 +1,7 @@
 package Agendar
 
 import App
+import MainScreen
 import MainScreen.Companion.KEY_EMAIL
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -63,7 +64,7 @@ class BottomScreen :Screen{
                             )
                             Button(onClick = {
                                 settings.remove(KEY_EMAIL)
-                                navigator?.pop()
+                                navigator?.replace(MainScreen())
                             }) {
                                 Text("Cerrar sesión")
                             }

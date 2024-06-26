@@ -127,7 +127,7 @@ object Home : Tab {
                 Text(text = "Doctor: ${doctor.name}", fontSize = 18.sp)
                 Text(text = "Especialidad: ${doctor.specialty}", fontSize = 14.sp)
                 Button(onClick = { showDialog = true }) {
-                    Text(text = "Ver Horarios")
+                    Text(text = "Disponibilidad")
                 }
                 if (showDialog) {
                     ScheduleDialog(doctor = doctor, onClose = { showDialog = false }, onScheduleUpdate = { updatedSchedules ->

@@ -32,6 +32,8 @@ class Registro: Screen  {
     override fun Content() {
 
         var username by remember { mutableStateOf(TextFieldValue()) }
+        var lastname by remember { mutableStateOf(TextFieldValue()) }
+        var email by remember { mutableStateOf(TextFieldValue()) }
         var password by remember { mutableStateOf(TextFieldValue()) }
 
         val navigator= LocalNavigator.current
@@ -63,8 +65,8 @@ class Registro: Screen  {
                         .padding(bottom = 8.dp)
                 )
                 OutlinedTextField(
-                    value = username,
-                    onValueChange = { username = it },
+                    value = lastname,
+                    onValueChange = { lastname = it },
                     label = { Text("Apellido") },
                     singleLine = true,
                     modifier = Modifier
@@ -73,8 +75,8 @@ class Registro: Screen  {
                 )
 
                 OutlinedTextField(
-                    value = username,
-                    onValueChange = { username = it },
+                    value = email,
+                    onValueChange = { email = it },
                     label = { Text("Correo") },
                     singleLine = true,
                     modifier = Modifier
